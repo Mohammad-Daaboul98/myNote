@@ -11,20 +11,19 @@ function App() {
   // const [id ,setId] = useState();
 
 
-  useEffect(()=>{
-    Axios.get("http://localhost:3001/api/get").then((result)=>{
-     
+  useEffect(() => {
+    Axios.get("https://my-note-app-98.herokuapp.com/%20deployed%20to%20Heroku/api/get").then((result) => {
       setNotes(result.data)
     })
-  },[AddNote]);
+  }, [AddNote]);
 
   function AddNote(newNote) {
 
-      Axios.post("http://localhost:3001/api/insert",{
-        title:newNote.title,
-        content:newNote.content
+    Axios.post("https://my-note-app-98.herokuapp.com/%20deployed%20to%20Heroku/api/insert", {
+      title: newNote.title,
+      content: newNote.content
     }).then("Susccessful insert");
-    
+
 
     // setNotes(prevNotes => {
     //   return [...prevNotes, newNote];
@@ -33,7 +32,7 @@ function App() {
 
   function deleteNote(id) {
 
-Axios.delete(`http://localhost:3001/api/delete/${id}`);
+    Axios.delete(`https://my-note-app-98.herokuapp.com/%20deployed%20to%20Heroku/delete/${id}`);
     // setNotes(prevNotes => {
     //   return prevNotes.filter((noteItem, index) => {
     //     return index !== Id;
@@ -44,12 +43,12 @@ Axios.delete(`http://localhost:3001/api/delete/${id}`);
   return (
     <div>
       <Header />
-      <CreateArea  onAdd={AddNote} />
+      <CreateArea onAdd={AddNote} />
       {notes.map((noteItem, index) => {
         return (
           <Note
             key={index}
-            id = {noteItem._id}
+            id={noteItem._id}
             title={noteItem.title}
             content={noteItem.content}
             onDelete={deleteNote}
